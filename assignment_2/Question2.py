@@ -1,0 +1,49 @@
+import numpy as np
+
+# Function definition
+def f(x, y):
+    return 10*x**4 - 20*x**2*y + x**2 + 10*y**2 - 2*x + 1
+
+# Gradient of the function
+def grad_f(x, y):
+    df_dx = 40*x**3 - 40*x*y + 2*x - 2
+    df_dy = -20*x**2 + 20*y
+    return np.array([df_dx, df_dy])
+
+# Armijo's rule to determine step size alpha
+def armijo_rule(x, y, grad, alpha=1, beta=0.5, sigma=0.1):
+    while f(x, y) - f(x - alpha*grad[0], y - alpha*grad[1]) < sigma*alpha*np.dot(grad, grad):
+        alpha *= beta
+    return alpha
+
+# Gradient descent with Armijo's rule
+def gradient_descent_with_armijo(start_x, start_y, iterations=100):
+    x, y = start_x, start_y
+    history = []
+    
+    for i in range(iterations):
+        grad = grad_f(x, y)
+        alpha = armijo_rule(x, y, grad)
+        x = x - alpha * grad[0]
+        y = y - alpha * grad[1]
+        
+        history.append((x, y, alpha, f(x, y)))
+        
+        if i < 10:  # Print the first 10 iterates
+            print(f"Iterate {i+1}: x = {x}, y = {y}, alpha = {alpha}, f(x, y) = {f(x, y)}")
+        
+        if np.linalg.norm(grad) < 1e-5:  # Convergence criterion
+            break
+    
+    return x, y, f(x, y), history
+
+# Initial point
+start_x = 0.5
+start_y = 0.5
+
+# Perform gradient descent
+x_star, y_star, f_star, history = gradient_descent_with_armijo(start_x, start_y)
+
+print(f"Optimal points: x* = {x_star}, y* = {y_star}, f(x*, y*) = {f_star}")
+
+
