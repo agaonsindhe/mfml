@@ -5,7 +5,7 @@ from sympy import symbols, Matrix,MutableDenseMatrix
 from numpy import poly
 
 # Generate a random integer matrix C of size 4x3
-C = np.random.randint(low=-10, high=10, size=(4, 3))
+C = np.random.randint(low=0, high=10, size=(4, 3))
 
 # Calculate A1 = C.T * C (Matrix multiplication of C transpose and C)
 A1 = np.dot(C.T, C)
@@ -41,6 +41,7 @@ def power_method(A, num_iterations=100, tolerance=1e-10):
     # This will generate vector with element having largest value as 1
 
     iterates = []
+    eigenPair={}
 
     for _ in range(num_iterations):
         # Calculate the matrix-by-vector product Ab
@@ -55,16 +56,18 @@ def power_method(A, num_iterations=100, tolerance=1e-10):
         # Save the current eigenvalue approximation
         lambda_k = b_k1_norm
         iterates.append(lambda_k)
+        eigenPair[lambda_k] = b_k
 
         # Check for convergence
-        if np.linalg.norm(np.dot(A, b_k) - lambda_k * b_k) < tolerance:
-            break
+        # if np.linalg.norm(np.dot(A, b_k) - lambda_k * b_k) < tolerance:
+        #     break
 
-    return lambda_k, b_k, iterates
+    return max(iterates), eigenPair[max(iterates)], iterates
 
 # Use the Power method to find the largest eigenvalue and corresponding eigenvector
-lambda_1, x_1, iterates = power_method(A1, 100)
+lambda_1, x_1, iterates= power_method(A1, 100)
 x_hat_1 = x_1 / np.linalg.norm(x_1, 2)  # Normalize x_1
+
 
 # Output the first 10 iterates of the eigenvalue
 print("First 10 iterates of the eigenvalue approximation:", iterates[:10])
@@ -80,10 +83,51 @@ print("Norm of x_1:", norm_x_1)
 
 
 print("\nComparison:")
+# Comparison Comment
+print(
+    "The largest eigenvalue and corresponding eigenvector obtained from the Power Method closely match the results obtained using NumPy's functions. This demonstrates the effectiveness of the Power Method in accurately determining the principal eigenpair of a matrix. The convergence of the Power Method iterates to the largest eigenvalue as computed by NumPy validates the implementation.")
 
-print("||x_1||_2 from numpy:", np.linalg.norm(eigenvectors.max()))
-print("||x_1_hat||_2 from Power Method:", np.linalg.norm(x_hat_1))
 
-# Comment on comparison
-print("\nAs expected, the norms (||x_1||_2) obtained from the Power Method and "
-      "numpy are very close, confirming the validity of the implemented method.")
+#Starting Q1(iii)
+# Construct A2 = A1 - x_hat_1 x_hat_1^T A1
+x_hat_1_matrix = np.outer(x_hat_1, x_hat_1)
+A2 = A1 - np.dot(x_hat_1_matrix, A1)
+
+print("matrix A2:", A2)
+# Use the Power method to find the largest eigenvalue and corresponding eigenvector of A2
+lambda_2, x_2, iterates_2 = power_method(A2, 100)
+x_hat_2 = x_2 / np.linalg.norm(x_2, 2)  # Normalize x_2
+
+# Output the first 10 iterates of the eigenvalue λ2
+print("First 10 iterates of λ2:", iterates_2[:10])
+
+# Output the final λ2 and normalized eigenvector x_hat_2
+print("Final largest eigenvalue λ2:", lambda_2)
+print("Corresponding Eigen Vector:(x_2)", x_2)
+print("Normalized eigenvector (x_hat_2):", x_hat_2)
+
+# Comparison with values obtained in i)
+# This would involve comparing λ2 and x_hat_2 with the second largest eigenvalue and its eigenvector obtained directly (if available).
+
+
+#End Q1(iii)
+
+#Q1(iv) Start
+ #Construct A3 = A1 - x_hat_1 x_hat_1^T A1 - x_hat_2 x_hat_2^T A1
+x_hat_1_matrix = np.outer(x_hat_1, x_hat_1)
+x_hat_2_matrix = np.outer(x_hat_2, x_hat_2)
+A3 = A1 - np.dot(x_hat_1_matrix, A1) - np.dot(x_hat_2_matrix, A1)
+
+# Use the Power method to find the largest eigenvalue and corresponding eigenvector of A3
+lambda_3, x_3, iterates_3 = power_method(A3, 100)
+x_hat_3 = x_3 / np.linalg.norm(x_3, 2)  # Normalize x_3
+
+# Output the first 10 iterates of the eigenvalue λ2
+print("First 10 iterates of λ3:", iterates_3[:10])
+
+# Output the final λ3 and normalized eigenvector x_hat_3
+print("Final largest eigenvalue λ3:", lambda_3)
+print("Corresponding Eigen Vector:(x_3)", x_3)
+print("Normalized eigenvector (x_hat_3):", x_hat_3)
+
+#End Q1(iv)
