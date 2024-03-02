@@ -46,4 +46,6 @@ x_star, y_star, f_star, history = gradient_descent_with_armijo(start_x, start_y)
 
 print(f"Optimal points: x* = {x_star}, y* = {y_star}, f(x*, y*) = {f_star}")
 
+print("Minimum value:", f(x_star, y_star))
+
 
