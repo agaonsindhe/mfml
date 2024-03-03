@@ -2,8 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-# Update with your student ID
-student_id = "2023xx05150"
+##### To be Updated #####
+# e.g.,if your BITS email id is 023ab12345@wilp.bits-pilani.com
+# update the below line as student_id = "023xx12345"
+student_id = "023xx12345"
 student_id = ''.join([i for i in student_id if i.isdigit()])
 random.seed(student_id)
 
@@ -22,7 +24,12 @@ print(f"Gradient of loss function: dC/dx = {gradient_loss_function_eq['dx']}, dC
 
 
 def C(xy: np.ndarray):
+    #### To be Updated #####
+    # NOTE: return value of this function will
+    # **ALSO** change for Q4 of the assignment
+    #########################
     x, y = xy
+
     return np.array(
         [
             3 * x * 2 + 2 * y * 2 + 20 * math.cos(x) * math.cos(y),
@@ -32,6 +39,8 @@ def C(xy: np.ndarray):
 
 # Evaluate the gradient of function at x
 def dC(xy: np.ndarray):
+    ##### To be Updated #####
+    # 1. Compute and return the gradient
     x, y = xy
     return np.array(
         [
@@ -64,13 +73,15 @@ def GD(start, x, y, z, c, dc, iters, eta):
     grad_xs0, grad_xs1, grad_ys = [px[0][0]], [px[1][0]], [py]
 
     for iter in range(iters):
+        # 2. Update px using gradient descent
         grad = dc(px)
         px = px - (eta * grad)
+        # 3. Update py
         py = c(px)
+        #########################
         grad_xs0.append(px[0][0])
         grad_xs1.append(px[1][0])
         grad_ys.append(py)
-        # print("grad_xs0 :", grad_xs0, " \ngrad_xs1: ", grad_xs1, " \ngrad_ys: ", grad_ys)
     print("Converged Point:", px, py)
     plot_grad_change(x, y, z, c, grad_xs0, grad_xs1, grad_ys)
 
