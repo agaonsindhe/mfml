@@ -1,0 +1,25 @@
+Given the nature of the function \(C(x, y) = 3x^2 + 2y^2 + 20\cos(x)\cos(y)\) and the plotted convergence path, it appears that the algorithm converged to a point near a local minimum. This assessment is based on the behavior of gradient descent, which is designed to follow the gradient of the function downwards until it reaches a point where the gradient is close to zero, indicating a local minimum.
+
+The function \(C(x, y)\) has multiple minima due to the presence of the trigonometric terms \(20\cos(x)\cos(y)\), which introduce periodic local minima and maxima. The global minimum of such a function would be the lowest value that \(C(x, y)\) attains over its entire domain, while a local minimum is a point where \(C(x, y)\) is lower than all other points in some neighborhood around it.
+
+Without comparing the converged value to the global minimum of the function (which requires further analysis or knowledge of the function's global behavior), it is not possible to definitively state whether the algorithm found the global minimum. However, given the starting point and the behavior of gradient descent, it is more likely that the algorithm converged to a local minimum rather than the global minimum.
+
+The statement that the algorithm failed to converge would be incorrect in this context, as the output indicates that the algorithm did indeed converge to a specific point where the rate of change of \(C(x, y)\) is near zero. This convergence is evident from the final output showing a stable point and the corresponding function value.
+
+/home/agaonsindhe/Downloads/yes/bin/python /home/agaonsindhe/Desktop/codebase/python/mtech/mfml/assignment_2/Question4.py
+Loss function equation: C(x, y) = 3*x^2 + 2*y^2 + 20*cos(x)*cos(y)
+Gradient of loss function: dC/dx = 6*x - 20*sin(x)*cos(y), dC/dy = 4*y - 20*sin(y)*cos(x)
+GD Start Point: [[-8.5835]
+ [-1.6823]] [[-56.74691038]]
+Num steps: 256
+Converged Point: [[-2.35644115e+00]
+ [-9.54874376e-22]] [[-28.28427039]]
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+libGL error: MESA-LOADER: failed to open radeonsi: /usr/lib/dri/radeonsi_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: radeonsi
+libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+
+Process finished with exit code 0
+
+

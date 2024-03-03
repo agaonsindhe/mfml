@@ -3,27 +3,36 @@ import matplotlib.pyplot as plt
 import random
 
 # Update with your student ID
-student_id = "023xx12345"
+student_id = "2023xx05150"
 student_id = ''.join([i for i in student_id if i.isdigit()])
 random.seed(student_id)
 
 # Set the number of iterations and learning rate
-iters = random.randint(100,300)
+iters = random.randint(100, 300)
 learning_rate = 0.01
 import math
 
-def C(x: np.ndarray):
-    x, y = x
+# Define the loss function equation and its gradient for reference
+loss_function_eq = "3*x^2 + 2*y^2 + 20*cos(x)*cos(y)"
+gradient_loss_function_eq = {"dx": "6*x - 20*sin(x)*cos(y)", "dy": "4*y - 20*sin(y)*cos(x)"}
+
+# Print the equations
+print(f"Loss function equation: C(x, y) = {loss_function_eq}")
+print(f"Gradient of loss function: dC/dx = {gradient_loss_function_eq['dx']}, dC/dy = {gradient_loss_function_eq['dy']}")
+
+
+def C(xy: np.ndarray):
+    x, y = xy
     return np.array(
         [
-            3 * x*2 + 2 * y*2 + 20 * math.cos(x) * math.cos(y),
+            3 * x * 2 + 2 * y * 2 + 20 * math.cos(x) * math.cos(y),
         ]
     )
 
 
 # Evaluate the gradient of function at x
-def dC(x: np.ndarray):
-    x, y = x
+def dC(xy: np.ndarray):
+    x, y = xy
     return np.array(
         [
             6 * x - 20 * np.cos(y) * np.sin(x),
@@ -31,16 +40,21 @@ def dC(x: np.ndarray):
         ]
     )
 
-def plot_grad_change(X,Y,Z, c, grad_xs0, grad_xs1, grad_ys):
+
+def plot_grad_change(X, Y, Z, c, grad_xs0, grad_xs1, grad_ys):
     fig = plt.figure()
     title_str = "Gradient Descent:" + "lr=" + str(learning_rate)
     plt.title(title_str)
     ax = fig.add_subplot(projection='3d')
     ax.plot_surface(X, Y, Z, cmap=plt.cm.YlGnBu_r, alpha=0.7)
     for i in range(len(grad_xs0)):
-        ax.plot([grad_xs0[i]], [grad_xs1[i]], grad_ys[i][0], markerfacecolor='r', markeredgecolor='r', marker='o', markersize=7)
-    ax.text(grad_xs0[-1], grad_xs1[-1], grad_ys[-1][0][0], "(" + str(round(grad_xs0[-1],2)) + "," + str(round(grad_xs1[-1],2)) + ")," + str(round(grad_ys[-1][0][0],2)))
+        ax.plot([grad_xs0[i]], [grad_xs1[i]], grad_ys[i][0], markerfacecolor='r', markeredgecolor='r', marker='o',
+                markersize=7)
+    ax.text(grad_xs0[-1], grad_xs1[-1], grad_ys[-1][0][0],
+            "(" + str(round(grad_xs0[-1], 2)) + "," + str(round(grad_xs1[-1], 2)) + ")," + str(
+                round(grad_ys[-1][0][0], 2)))
     plt.show()
+
 
 def GD(start, x, y, z, c, dc, iters, eta):
     px = start.astype(float)
@@ -59,6 +73,7 @@ def GD(start, x, y, z, c, dc, iters, eta):
         # print("grad_xs0 :", grad_xs0, " \ngrad_xs1: ", grad_xs1, " \ngrad_ys: ", grad_ys)
     print("Converged Point:", px, py)
     plot_grad_change(x, y, z, c, grad_xs0, grad_xs1, grad_ys)
+
 
 lo = -10
 hi = 10

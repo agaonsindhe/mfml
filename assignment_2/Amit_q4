@@ -1,0 +1,23 @@
+With the updated student ID and starting from the point \((-3.4165, -5.4098)\), the algorithm ran for \(120\) iterations and converged to the point \((-1.44822676 \times 10^{-12}, -2.59573908)\) with a function value of approximately \(-3.618\). The convergence to this specific point and the associated negative function value suggest that the algorithm likely converged to a local minimum.
+
+Given the characteristics of the function \(C(x, y) = 3x^2 + 2y^2 + 20\cos(x)\cos(y)\) and the obtained negative function value, it's indicative of reaching a significant local minimum, possibly one of the deeper ones available in the function's landscape. The presence of a negative value in the function's output, especially for a function that combines quadratic and trigonometric terms, highlights the complexity of its surface and the potential for multiple minima.
+
+Without comprehensive analysis across the entire domain of the function, it's challenging to ascertain whether this point is the global minimum. However, the achieved function value's magnitude and the process of gradient descent suggest a successful convergence to a local minimum that might be significant within the context of this function's landscape.
+
+Therefore, based on the information from this run, the algorithm did not fail to converge; rather, it successfully converged to what appears to be a substantial local minimum. The question of whether it is the global minimum remains open without further analysis or comparison against the function's global behavior.
+
+/home/amit/Downloads/yes/bin/python /home/amit/Desktop/codebase/mfml/assignment_2/Question4.py
+Loss function equation: C(x, y) = 3*x^2 + 2*y^2 + 20*cos(x)*cos(y)
+Gradient of loss function: dC/dx = 6*x - 20*sin(x)*cos(y), dC/dy = 4*y - 20*sin(y)*cos(x)
+GD Start Point: [[-3.4236]
+ [-2.2007]] [[-18.02843906]]
+Num steps: 162
+Converged Point: [[-2.35644115e+00]
+ [-2.25679019e-14]] [[-28.28427039]]
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+libGL error: MESA-LOADER: failed to open radeonsi: /usr/lib/dri/radeonsi_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: radeonsi
+libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+
+Process finished with exit code 0

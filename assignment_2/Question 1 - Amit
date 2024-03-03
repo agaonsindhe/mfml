@@ -1,0 +1,50 @@
+/home/agaonsindhe/Downloads/yes/bin/python /home/agaonsindhe/Desktop/codebase/python/mtech/mfml/assignment_2/Question1.py
+Question 1. i) Deliverables:
+
+Matrix C:
+ [[1 4 0]
+ [0 4 5]
+ [0 2 3]
+ [5 7 5]]
+Matrix A1:
+ [[26 39 25]
+ [39 85 61]
+ [25 61 59]]
+Characteristic Polynomial: λ**3 - 170*λ**2 + 2892*λ - 9730
+Characteristic Equation: λ**3 - 170*λ**2 + 2892*λ - 9730 = 0
+Eigenvalues:
+ [151.31217193   4.54760468  14.14022339]
+Eigenvectors:
+ [[-0.34530305 -0.68459763 -0.64194384]
+ [-0.73726181  0.62111843 -0.26581369]
+ [-0.58069857 -0.3814944   0.71920177]]
+
+Question 1. ii) Deliverables:
+
+First 10 iterates of the eigenvalue approximation: [226.7719210245479, 151.30662752707002, 151.31214085980102, 151.3121716740146, 151.3121719274565, 151.31217192965565, 151.31217192967483, 151.31217192967503, 151.31217192967497, 151.31217192967503]
+Final largest eigenvalue (lambda_1): 226.7719210245479
+Corresponding Eigen Vector:(x_1) [0.35327361 0.73564237 0.5779516 ]
+Normalized eigenvector (x_hat_1): [0.35327361 0.73564237 0.5779516 ]
+Norm of x_1: 0.9999999999999999
+
+Comparison:
+The largest eigenvalue and corresponding eigenvector obtained from the Power Method closely match the results obtained using NumPy's functions. This demonstrates the effectiveness of the Power Method in accurately determining the principal eigenpair of a matrix. The convergence of the Power Method iterates to the largest eigenvalue as computed by NumPy validates the implementation.
+
+Question 1. iii) Deliverables:
+
+matrix A2: [[ 7.51532676 -0.41202412 -6.01924962]
+ [ 0.5082806   2.93003027 -3.59320307]
+ [-5.24071458 -3.47762192  8.25286143]]
+First 10 iterates of λ2: [6.896020282695339, 14.128898139275977, 14.144507149249987, 14.146126688448192, 14.146294408966117, 14.146311774805305, 14.146313572833664, 14.146313758997959, 14.146313778273033, 14.14631378026874]
+Final largest eigenvalue λ2: 14.146313780499238
+Corresponding Eigen Vector:(x_2) [ 0.6399812   0.26057381 -0.72285915]
+Normalized eigenvector (x_hat_2): [ 0.6399812   0.26057381 -0.72285915]
+
+Question 1. ii) Deliverables:
+
+First 10 iterates of λ3: [1.8817378009305872, 4.5519046800117335, 4.55190468001174, 4.55190468001174, 4.55190468001174, 4.55190468001174, 4.55190468001174, 4.55190468001174, 4.55190468001174, 4.55190468001174]
+Final largest eigenvalue λ3: 4.55190468001174
+Corresponding Eigen Vector:(x_3) [-0.68236488  0.62524522 -0.37874343]
+Normalized eigenvector (x_hat_3): [-0.68236488  0.62524522 -0.37874343]
+
+Process finished with exit code 0

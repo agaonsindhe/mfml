@@ -2,33 +2,50 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-# Update with your student ID
-student_id = "023xx12345"
+##### To be Updated #####
+# e.g.,if your BITS email id is 023ab12345@wilp.bits-pilani.com
+# update the below line as student_id = "023xx12345"
+student_id = "2023xx05262"
 student_id = ''.join([i for i in student_id if i.isdigit()])
 random.seed(student_id)
 
 # Set the number of iterations and learning rate
-iters = random.randint(100,300)
+iters = random.randint(100, 300)
 learning_rate = 0.01
+
+print("Loss Function: C(x) = (x^T * A * x) - (b^T * x), where A = [[2, 1], [1, 20]] and b = [5, 3]^T")
+print("Gradient of Loss Function: dC(x) = 2 * A * x - b, where A = [[2, 1], [1, 20]] and b = [5, 3]^T")
 
 # Function to evaluate
 def C(x):
+    #### To be Updated #####
+    # NOTE: return value of this function will
+    # **ALSO** change for Q4 of the assignment
+    #########################
     return (x.T @ np.array([[2, 1], [1, 20]]) @ x) - (np.array([5, 3]).reshape(2, 1).T @ x)
+
 
 # Function to evaluate the gradient
 def dC(x):
+    ##### To be Updated #####
+    # 1. Compute and return the gradient
     return 2 * np.array([[2, 1], [1, 20]]) @ x - np.array([5, 3]).reshape(2, 1)
 
-def plot_grad_change(X,Y,Z, c, grad_xs0, grad_xs1, grad_ys):
+
+def plot_grad_change(X, Y, Z, c, grad_xs0, grad_xs1, grad_ys):
     fig = plt.figure()
     title_str = "Gradient Descent:" + "lr=" + str(learning_rate)
     plt.title(title_str)
     ax = fig.add_subplot(projection='3d')
     ax.plot_surface(X, Y, Z, cmap=plt.cm.YlGnBu_r, alpha=0.7)
     for i in range(len(grad_xs0)):
-        ax.plot([grad_xs0[i]], [grad_xs1[i]], grad_ys[i][0], markerfacecolor='r', markeredgecolor='r', marker='o', markersize=7)
-    ax.text(grad_xs0[-1], grad_xs1[-1], grad_ys[-1][0][0], "(" + str(round(grad_xs0[-1],2)) + "," + str(round(grad_xs1[-1],2)) + ")," + str(round(grad_ys[-1][0][0],2)))
+        ax.plot([grad_xs0[i]], [grad_xs1[i]], grad_ys[i][0], markerfacecolor='r', markeredgecolor='r', marker='o',
+                markersize=7)
+    ax.text(grad_xs0[-1], grad_xs1[-1], grad_ys[-1][0][0],
+            "(" + str(round(grad_xs0[-1], 2)) + "," + str(round(grad_xs1[-1], 2)) + ")," + str(
+                round(grad_ys[-1][0][0], 2)))
     plt.show()
+
 
 def GD(start, x, y, z, c, dc, iters, eta):
     px = start.astype(float)
@@ -39,13 +56,16 @@ def GD(start, x, y, z, c, dc, iters, eta):
 
     for iter in range(iters):
         grad = dc(px)
+        # 2. Update px using gradient descent
         px = px - (eta * grad)
+        # 3. Update py
         py = c(px)
         grad_xs0.append(px[0][0])
         grad_xs1.append(px[1][0])
         grad_ys.append(py)
     print("Converged Point:", px, py)
     plot_grad_change(x, y, z, c, grad_xs0, grad_xs1, grad_ys)
+
 
 lo = -10
 hi = 10
